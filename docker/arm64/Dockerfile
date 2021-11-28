@@ -5,10 +5,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && \
 
 WORKDIR /app
 
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh \
-    && mkdir /root/.conda \
-    && DEBIAN_FRONTEND=noninteractive bash Miniconda3-latest-Linux-aarch64.sh -b \
-    && rm -f Miniconda3-latest-Linux-aarch64.sh \
+# Installing minconda into the JetsonNano Image
+RUN wget --quiet -O archiconda3.sh https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-aarch64.sh &&\
+    DEBIAN_FRONTEND=noninteractive sh archiconda3.sh -b -p /opt/archiconda3 &&\
+    rm -f archiconda3.sh \
+
+# Add conda to path
+ENV PATH="/opt/archiconda3/bin:${PATH}"
 
 # Check conda version
 RUN conda --version
