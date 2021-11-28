@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+import InfiniteMoneyMaker as imm
 
 if __name__ == '__main__':
-    print("IMM v0.0.2")
+    print("IMM Started!")
+    print(f"\tInstalled path: {imm.PKG_INSTALL_PATH}")
