@@ -11,7 +11,7 @@ fi
 
 if [[ $architecture == "arm64" ]]; then
   echo -e "[IMM](arm64)"
-  dockercmd="-it --rm all imm $@"
+  dockercmd="-it --rm imm $@"
 fi
 
 echo "[IMM] Running docker with the following cmd: $dockercmd"
