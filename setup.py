@@ -6,8 +6,8 @@ if __name__ == "__main__":
     except Exception as e:
         print(
             f"Exception occurred:  {e}"
-            "please ensure you have the most updated version of setuptools, "
-            "wheel with:\n"
-            "   pip install -U setuptools wheel\n\n"
+            "please ensure you have the right version of python and the most updated version of setuptools and wheels"
+            "python --version"
+            "pip install wheel setuptools"
         )
         raise

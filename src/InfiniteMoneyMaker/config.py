@@ -36,9 +36,11 @@ class Config:
             raise ConfigFileNotExist(path)
         with open(path, 'r') as fd:
             try:
-                return Param(yaml.safe_load(fd))
+                param = Param(yaml.safe_load(fd))
+                Logger.info(f"{cls}: configuration loaded correctly")
+                return param
             except yaml.YAMLError:
-                Logger.error(f"{cls.__class__}: Error in loading the configuration {path}")
+                Logger.error(f"{cls}: Error in loading the configuration {path}")
                 return None
             finally:
                 cls._log_read_access()
@@ -47,9 +49,10 @@ class Config:
     def save(cls, path: Path, config: Union[dict, Param]) -> bool:
         try:
             yaml.safe_dump(config)
+            Logger.info(f"{cls}: configuration saved correctly")
             return True
         except yaml.YAMLError:
-            Logger.error(f"{cls.__class__}: Error saving the configuration {path}")
+            Logger.error(f"{cls}: Error saving the configuration {path}")
             return False
         finally:
             cls._log_write_access()
@@ -57,12 +60,12 @@ class Config:
     @classmethod
     def _log_read_access(cls):
         cls._last_read_access = datetime.now()
-        Logger.debug(f"{cls.__class__}: New read access at {cls._last_read_access}")
+        Logger.debug(f"{cls}: New read access at {cls._last_read_access}")
 
     @classmethod
     def _log_write_access(cls):
         cls._last_write_access = datetime.now()
-        Logger.debug(f"{cls.__class__}: New write access at {cls._last_write_access}")
+        Logger.debug(f"{cls}: New write access at {cls._last_write_access}")
 
 
 class ConfigFileNotExist(Exception):

@@ -11,7 +11,7 @@ if __name__ == '__main__':
     cb_ws = imm.exchanger.coinbase.CBWsReceiver(cfg_path, products=['ETH-EUR'], channels=['ticker'])
 
     cb_ws.start()
-    time.sleep(10)
+    time.sleep(3)
     cb_ws.close()
 
     exit(0)
