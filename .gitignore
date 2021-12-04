@@ -1,6 +1,9 @@
 # CLION
 .idea
 
+# API config file
+.api.yml
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -8,6 +8,9 @@ WORKDIR /app
 # Copy IMM
 COPY ./ /app/imm
 
+# Copy API yml config
+Copy .api.yml /app
+
 RUN cd /app/imm && python3.8 -m pip install . --use-feature=in-tree-build
 
 # # Pass parameters to imm script

@@ -1,7 +1,17 @@
 #!/usr/bin/python3
 
 import InfiniteMoneyMaker as imm
+import time
 
 if __name__ == '__main__':
-    print("IMM Started!")
-    print(f"\tInstalled path: {imm.PKG_INSTALL_PATH}")
+    imm.Logger.info("IMM Started!")
+    imm.Logger.info(f"Installed path: {imm.__install_path__}")
+
+    cfg_path = imm.Path('.api.yml')
+    cb_ws = imm.exchanger.coinbase.CBWsReceiver(cfg_path, products=['ETH-EUR'], channels=['ticker'])
+
+    cb_ws.start()
+    time.sleep(10)
+    cb_ws.close()
+
+    exit(0)
